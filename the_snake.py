@@ -39,11 +39,12 @@ class GameObject:
     """Базовый класс описывает общие атрибуты игровых объектов."""
 
     def __init__(self, body_color=SNAKE_COLOR):
+        """Конструктор родительского класса."""
         self.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = body_color
 
     def draw(self, surface, position):
-        """Метод рисует объект на игрвой поверхности."""
+        """Рисует объект на игровой поверхности."""
         rect = pygame.Rect(
             (position[0], position[1]), (GRID_SIZE, GRID_SIZE)
         )
@@ -55,7 +56,7 @@ class Apple(GameObject):
     """Дочерний класс описывает объект - яблоко."""
 
     def __init__(self, busy_positions=None):
-        """:type param: list"""
+        """:type param: list."""
         busy_positions = [] if busy_positions is None else busy_positions
         super().__init__(APPLE_COLOR)
         self.randomize_position(busy_positions)
@@ -76,7 +77,7 @@ class Apple(GameObject):
         self.position = new_position
 
     def draw(self, surface):
-        """Отрисовка яблока."""
+        """Рисует яблоко через родительский класс."""
         super().draw(surface, self.position)
 
 
@@ -84,6 +85,7 @@ class Snake(GameObject):
     """Дочерний класс описывает объект - змейку."""
 
     def __init__(self):
+        """Конструктор дочернего класса."""
         super().__init__()
         self.positions = [self.position]
         self.direction = RIGHT
@@ -92,7 +94,7 @@ class Snake(GameObject):
         self.last = None
 
     def update_direction(self):
-        """Метод обновления направления после нажатия на кнопку."""
+        """Обновляет направление змейки после нажатия на кнопку."""
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
@@ -108,7 +110,7 @@ class Snake(GameObject):
 
     #  Метод draw класса Snake
     def draw(self, surface):
-        """Отрисовка змейки."""
+        """Рисует змейку через родительский класс."""
         # Отрисовка головы
         super().draw(surface, self.positions[0])
         # Отрисовка хвоста
