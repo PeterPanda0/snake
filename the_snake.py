@@ -2,7 +2,6 @@
 import pygame
 from random import choice, randint
 
-
 # Инициализация PyGame.
 pygame.init()
 
@@ -40,7 +39,7 @@ clock = pygame.time.Clock()
 class GameObject:
     """Базовый класс описывает общие атрибуты игровых объектов."""
 
-    def __init__(self, body_color=SNAKE_COLOR) -> None:
+    def __init__(self, body_color=SNAKE_COLOR):
         """Конструктор родительского класса."""
         self.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = body_color
@@ -57,7 +56,7 @@ class GameObject:
 class Apple(GameObject):
     """Дочерний класс описывает объект - яблоко."""
 
-    def __init__(self, busy_positions=None) -> None:
+    def __init__(self, busy_positions=None):
         """:type param: list."""
         # Второй атрибут - позиция змейки.
         busy_positions = [] if busy_positions is None else busy_positions
@@ -89,7 +88,7 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Дочерний класс описывает объект - змейку."""
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Конструктор дочернего класса."""
         super().__init__()
         self.positions = [self.position]
@@ -118,7 +117,7 @@ class Snake(GameObject):
         # Последний сегмент змейки.
         self.last = self.positions.pop(-1)
 
-    def draw(self, surface) -> None:
+    def draw(self, surface):
         """Рисует змейку через родительский метод."""
         # Отрисовка головы.
         super().draw(surface, self.positions[0])
