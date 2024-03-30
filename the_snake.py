@@ -1,5 +1,7 @@
-from random import choice, randint
+"""Игра змейка."""
 import pygame
+from random import choice, randint
+
 
 # Инициализация PyGame.
 pygame.init()
@@ -57,7 +59,7 @@ class Apple(GameObject):
 
     def __init__(self, busy_positions=None) -> None:
         """:type param: list."""
-        # Второй параметр - позиция змейки.
+        # Второй атрибут - позиция змейки.
         busy_positions = [] if busy_positions is None else busy_positions
         super().__init__(APPLE_COLOR)
         self.randomize_position(busy_positions)
@@ -79,7 +81,7 @@ class Apple(GameObject):
                 break
         self.position = new_position
 
-    def draw(self, surface) -> None:
+    def draw(self, surface):
         """Рисует яблоко через родительский метод."""
         super().draw(surface, self.position)
 
